@@ -17,10 +17,10 @@
     "dev": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006 --no-open",
     "build": "tsc && vite build",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-    "format": "yarn run lint:eslint --fix",
+    "format": "yarn run lint:eslint -- --fix",
     "test": "vitest run",
-    "test:watch": "yarn run test --watch",
-    "coverage": "yarn run test --coverage",
+    "test:watch": "yarn run test -- --watch",
+    "coverage": "yarn run test -- --coverage",
     "publish-package": "yarn run build && yarn run lint && yarn run test && npm publish --registry https://npm.pkg.jetbrains.space/bruhabruh/p/envie/npm/"
   },
   "devDependencies": {
