@@ -3,9 +3,8 @@ import { block } from '@envie/bem';
 import { cn } from '@envie/clsx';
 import { PolymorphicProps } from '../../types';
 import { createPolymorphicComponent } from '../../utils/createPolymorphicComponent';
-import { Box, BoxProps } from '../Box';
-
-export type TemplateNameProps = {} & BoxProps;
+import { Box } from '../Box';
+import { TemplateNameProps } from './TemplateName.types';
 
 const _defaultElement: React.ElementType = 'div';
 type DefaultElement = typeof _defaultElement;
