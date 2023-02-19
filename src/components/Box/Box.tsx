@@ -1,9 +1,8 @@
 import React from 'react';
-import { DefaultProps, PolymorphicProps, SystemProps } from '../../types';
+import { PolymorphicProps } from '../../types';
 import { createPolymorphicComponent } from '../../utils/createPolymorphicComponent';
 import { extractSystemProps } from './extractSystemProps';
-
-export type BoxProps = SystemProps & DefaultProps;
+import { BoxProps } from './Box.types';
 
 const _defaultElement: React.ElementType = 'div';
 type DefaultElement = typeof _defaultElement;

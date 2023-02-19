@@ -9,6 +9,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './setupTests.ts',
+    exclude: ['node_modules', '.templates'],
     coverage: {
       reporter: ['text', 'json-summary'],
     },

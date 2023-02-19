@@ -21,7 +21,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_display');
+    expect(typography).toHaveClass('typography_size_large');
   });
 
   test('display medium', () => {
@@ -31,7 +34,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_display');
+    expect(typography).toHaveClass('typography_size_medium');
   });
 
   test('display small', () => {
@@ -41,7 +47,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_display');
+    expect(typography).toHaveClass('typography_size_small');
   });
 
   test('headline large', () => {
@@ -51,7 +60,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_headline');
+    expect(typography).toHaveClass('typography_size_large');
   });
 
   test('headline medium', () => {
@@ -61,7 +73,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_headline');
+    expect(typography).toHaveClass('typography_size_medium');
   });
 
   test('headline small', () => {
@@ -71,7 +86,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_headline');
+    expect(typography).toHaveClass('typography_size_small');
   });
 
   test('title large', () => {
@@ -81,7 +99,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_title');
+    expect(typography).toHaveClass('typography_size_large');
   });
 
   test('title medium', () => {
@@ -91,7 +112,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_title');
+    expect(typography).toHaveClass('typography_size_medium');
   });
 
   test('title small', () => {
@@ -101,7 +125,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_title');
+    expect(typography).toHaveClass('typography_size_small');
   });
 
   test('label large', () => {
@@ -111,7 +138,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_label');
+    expect(typography).toHaveClass('typography_size_large');
   });
 
   test('label medium', () => {
@@ -121,7 +151,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_label');
+    expect(typography).toHaveClass('typography_size_medium');
   });
 
   test('label small', () => {
@@ -131,7 +164,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_label');
+    expect(typography).toHaveClass('typography_size_small');
   });
 
   test('body large', () => {
@@ -141,7 +177,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_body');
+    expect(typography).toHaveClass('typography_size_large');
   });
 
   test('body medium', () => {
@@ -151,7 +190,10 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_body');
+    expect(typography).toHaveClass('typography_size_medium');
   });
 
   test('body small', () => {
@@ -161,6 +203,9 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('typography')).toBeInTheDocument();
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_variant_body');
+    expect(typography).toHaveClass('typography_size_small');
   });
 });

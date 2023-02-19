@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "@envie/bem": "^0.1.0",
-    "@envie/clsx": "^0.1.0"
+    "@envie/clsx": "^0.1.0",
+    "@envie/utilities": "^0.1.0"
   }
 }

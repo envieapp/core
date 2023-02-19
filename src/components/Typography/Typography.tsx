@@ -1,15 +1,11 @@
 import React from 'react';
-import { TypescaleName, TypescaleSize } from '@envie/theme';
 import { block } from '@envie/bem';
 import { cn } from '@envie/clsx';
 import { PolymorphicProps } from '../../types';
 import { createPolymorphicComponent } from '../../utils/createPolymorphicComponent';
-import { Box, BoxProps } from '../Box';
-
-export type TypographyProps = {
-  variant?: TypescaleName,
-  size?: TypescaleSize
-} & BoxProps;
+import { Box } from '../Box';
+import { TypographyProps } from './Typography.types';
+import { useStyles } from './use-styles';
 
 const _defaultElement: React.ElementType = 'p';
 type DefaultElement = typeof _defaultElement;
@@ -30,6 +26,7 @@ const _Typography = React.forwardRef<HTML, Props>((
     variant,
     size,
   });
+  const styles = useStyles({ variant, size });
 
   return (
     <Box
@@ -37,20 +34,7 @@ const _Typography = React.forwardRef<HTML, Props>((
       {...rest}
       className={cn(typography(), className)}
       ref={ref}
-      css={[
-        (theme) => {
-          const typescale = theme.sys.typescale[variant][size];
-          return {
-            fontFamily: typescale.fontFamily.join(','),
-            fontStyle: typescale.fontStyle,
-            fontSize: typescale.fontSize,
-            fontWeight: typescale.fontWeight,
-            letterSpacing: typescale.letterSpacing,
-            lineHeight: typescale.lineHeight,
-          };
-        },
-        css,
-      ]}
+      css={[styles, css]}
     />
   );
 });
