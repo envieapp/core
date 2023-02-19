@@ -21,7 +21,8 @@
     "test": "vitest run",
     "test:watch": "yarn run test -- --watch",
     "coverage": "yarn run test -- --coverage",
-    "publish-package": "yarn run build && yarn run lint && yarn run test && npm publish --registry https://npm.pkg.jetbrains.space/bruhabruh/p/envie/npm/"
+    "publish-package": "yarn run build && yarn run lint && yarn run test && npm publish --registry https://npm.pkg.jetbrains.space/bruhabruh/p/envie/npm/",
+    "component": "npx generate-react-cli component --type=default"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^6.5.16",
@@ -41,6 +42,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
+    "generate-react-cli": "^8.2.0",
     "jsdom": "^21.1.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
@@ -64,5 +66,9 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     }
+  },
+  "dependencies": {
+    "@envie/bem": "^0.1.0",
+    "@envie/clsx": "^0.1.0"
   }
 }

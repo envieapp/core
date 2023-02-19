@@ -1,5 +1,7 @@
 import React from 'react';
 import { TypescaleName, TypescaleSize } from '@envie/theme';
+import { block } from '@envie/bem';
+import { cn } from '@envie/clsx';
 import { PolymorphicProps } from '../../types';
 import { createPolymorphicComponent } from '../../utils/createPolymorphicComponent';
 import { Box, BoxProps } from '../Box';
@@ -16,14 +18,24 @@ type Props = PolymorphicProps<DefaultElement, TypographyProps>;
 
 const _Typography = React.forwardRef<HTML, Props>((
   {
-    css, variant = 'body', size = 'large', ...rest
+    variant = 'body',
+    size = 'large',
+    className,
+    css,
+    ...rest
   },
   ref,
 ) => {
+  const typography = block('typography', {
+    variant,
+    size,
+  });
+
   return (
     <Box
       as={_defaultElement}
       {...rest}
+      className={cn(typography(), className)}
       ref={ref}
       css={[
         (theme) => {

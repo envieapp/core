@@ -8,6 +8,7 @@ module.exports = {
     'node_modules',
     'dist',
     'coverage',
+    '.templates',
   ],
   rules: {
     'import/prefer-default-export': 'off',
