@@ -104,7 +104,7 @@ export const useStyles = (
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: '9999px',
+      borderRadius: theme.sys.shape.full,
     };
   };
 };
