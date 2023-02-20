@@ -39,7 +39,6 @@ yarn add @envie/core \
 
 - [ ] Bottom App Bar
 - [ ] Bottom sheets
-- [ ] Common buttons
 - [ ] FAB
 - [ ] Extended FAB
 - [ ] Icon buttons

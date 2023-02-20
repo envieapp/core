@@ -1,3 +1,4 @@
 export * from './Box';
 export * from './Badge';
+export * from './Button';
 export * from './Typography';
