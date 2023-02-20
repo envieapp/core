@@ -13,4 +13,6 @@ describe('Button testing', () => {
 
     expect(screen.getByTestId('button')).toBeInTheDocument();
   });
+
+  // TODO variants and color tests
 });
