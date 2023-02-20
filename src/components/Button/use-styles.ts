@@ -5,7 +5,7 @@ import { ButtonProps } from './Button.types';
 
 type Keys = RequiredKeys<ButtonProps, 'variant' | 'color'>;
 type Styles = Record<
-'containerStyles' | 'stateLayerStyles' | 'labelStyles',
+'containerStyles' | 'labelStyles',
 Interpolation<EnvieTheme>
 >;
 type Fn = (props: Keys) => Styles;
@@ -207,23 +207,22 @@ export const useStyles: Fn = (props: Keys): Styles => {
         '&:disabled': {
           cursor: 'not-allowed',
         },
+        '&:before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          borderRadius: theme.sys.shape.full,
+          background: 'var(--button-state-layer)',
+          transitionProperty: 'background',
+          transitionTimingFunction: `cubic-bezier(${theme.sys.motion.easing.standard})`,
+          transitionDuration: `${theme.sys.motion.duration.medium2}ms`,
+          zIndex: -1,
+        },
       };
     }],
-    stateLayerStyles: (theme) => {
-      return {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        borderRadius: theme.sys.shape.full,
-        background: 'var(--button-state-layer)',
-        transitionProperty: 'background',
-        transitionTimingFunction: `cubic-bezier(${theme.sys.motion.easing.standard})`,
-        transitionDuration: `${theme.sys.motion.duration.medium2}ms`,
-        zIndex: -1,
-      };
-    },
     labelStyles: () => {
       return {
         marginLeft: props.startIcon ? '0.5rem' : undefined,

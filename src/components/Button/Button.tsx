@@ -32,9 +32,8 @@ const _Button = React.forwardRef<HTML, Props>((
     'with-start-icon': Boolean(startIcon),
     'with-end-icon': Boolean(endIcon),
   });
-  const stateLayer = button('state-layer');
   const label = button('label');
-  const { containerStyles, stateLayerStyles, labelStyles } = useStyles({
+  const { containerStyles, labelStyles } = useStyles({
     variant,
     color,
     startIcon,
@@ -60,7 +59,6 @@ const _Button = React.forwardRef<HTML, Props>((
         {children}
       </Typography>
       {endIcon}
-      <Box className={cn(stateLayer)} css={stateLayerStyles} />
     </Box>
   );
 });
