@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof Badge> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  size: 'small',
+  label: 3,
 };
 
 export const Small = Template.bind({});

@@ -48,6 +48,11 @@ const Template: ComponentStory<typeof Button> = (args) => {
   );
 };
 
+export const Default = Template.bind({});
+Default.args = {
+  children: 'Button',
+};
+
 export const Elevated = Template.bind({});
 Elevated.args = {
   variant: 'elevated',
