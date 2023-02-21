@@ -11,201 +11,96 @@ describe('Typography testing', () => {
       </TestProviders>,
     );
 
+    const typography = screen.getByTestId('typography');
     expect(screen.getByTestId('typography')).toBeInTheDocument();
+    expect(typography).toHaveClass('typography');
   });
 
-  test('display large', () => {
+  test('large size', () => {
     render(
       <TestProviders>
-        <Typography data-testid="typography" variant="display" size="large" />
+        <Typography data-testid="typography" size="large" />
       </TestProviders>,
     );
 
     const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
+    expect(typography).toHaveClass('typography_size_large');
+  });
+
+  test('medium size', () => {
+    render(
+      <TestProviders>
+        <Typography data-testid="typography" size="medium" />
+      </TestProviders>,
+    );
+
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography_size_medium');
+  });
+
+  test('small size', () => {
+    render(
+      <TestProviders>
+        <Typography data-testid="typography" size="small" />
+      </TestProviders>,
+    );
+
+    const typography = screen.getByTestId('typography');
+    expect(typography).toHaveClass('typography_size_small');
+  });
+
+  test('display variant', () => {
+    render(
+      <TestProviders>
+        <Typography data-testid="typography" variant="display" />
+      </TestProviders>,
+    );
+
+    const typography = screen.getByTestId('typography');
     expect(typography).toHaveClass('typography_variant_display');
-    expect(typography).toHaveClass('typography_size_large');
   });
 
-  test('display medium', () => {
+  test('headline variant', () => {
     render(
       <TestProviders>
-        <Typography data-testid="typography" variant="display" size="medium" />
+        <Typography data-testid="typography" variant="headline" />
       </TestProviders>,
     );
 
     const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_display');
-    expect(typography).toHaveClass('typography_size_medium');
-  });
-
-  test('display small', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="display" size="small" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_display');
-    expect(typography).toHaveClass('typography_size_small');
-  });
-
-  test('headline large', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="headline" size="large" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
     expect(typography).toHaveClass('typography_variant_headline');
-    expect(typography).toHaveClass('typography_size_large');
   });
 
-  test('headline medium', () => {
+  test('title variant', () => {
     render(
       <TestProviders>
-        <Typography data-testid="typography" variant="headline" size="medium" />
+        <Typography data-testid="typography" variant="title" />
       </TestProviders>,
     );
 
     const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_headline');
-    expect(typography).toHaveClass('typography_size_medium');
-  });
-
-  test('headline small', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="headline" size="small" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_headline');
-    expect(typography).toHaveClass('typography_size_small');
-  });
-
-  test('title large', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="title" size="large" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
     expect(typography).toHaveClass('typography_variant_title');
-    expect(typography).toHaveClass('typography_size_large');
   });
 
-  test('title medium', () => {
+  test('label variant', () => {
     render(
       <TestProviders>
-        <Typography data-testid="typography" variant="title" size="medium" />
+        <Typography data-testid="typography" variant="label" />
       </TestProviders>,
     );
 
     const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_title');
-    expect(typography).toHaveClass('typography_size_medium');
-  });
-
-  test('title small', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="title" size="small" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_title');
-    expect(typography).toHaveClass('typography_size_small');
-  });
-
-  test('label large', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="label" size="large" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
     expect(typography).toHaveClass('typography_variant_label');
-    expect(typography).toHaveClass('typography_size_large');
   });
 
-  test('label medium', () => {
+  test('body variant', () => {
     render(
       <TestProviders>
-        <Typography data-testid="typography" variant="label" size="medium" />
+        <Typography data-testid="typography" variant="body" />
       </TestProviders>,
     );
 
     const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_label');
-    expect(typography).toHaveClass('typography_size_medium');
-  });
-
-  test('label small', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="label" size="small" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_label');
-    expect(typography).toHaveClass('typography_size_small');
-  });
-
-  test('body large', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="body" size="large" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
     expect(typography).toHaveClass('typography_variant_body');
-    expect(typography).toHaveClass('typography_size_large');
-  });
-
-  test('body medium', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="body" size="medium" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_body');
-    expect(typography).toHaveClass('typography_size_medium');
-  });
-
-  test('body small', () => {
-    render(
-      <TestProviders>
-        <Typography data-testid="typography" variant="body" size="small" />
-      </TestProviders>,
-    );
-
-    const typography = screen.getByTestId('typography');
-    expect(typography).toHaveClass('typography');
-    expect(typography).toHaveClass('typography_variant_body');
-    expect(typography).toHaveClass('typography_size_small');
   });
 });

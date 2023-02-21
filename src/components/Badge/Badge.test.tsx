@@ -11,10 +11,12 @@ describe('Badge testing', () => {
       </TestProviders>,
     );
 
-    expect(screen.getByTestId('badge')).toBeInTheDocument();
+    const badge = screen.getByTestId('badge');
+    expect(badge).toBeInTheDocument();
+    expect(badge).toHaveClass('badge');
   });
 
-  test('small', () => {
+  test('small size', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" size="small" />
@@ -22,12 +24,11 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_size_small');
     expect(badge.hasChildNodes()).toBeFalsy();
   });
 
-  test('large-single', () => {
+  test('large-single size', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" size="large-single" />
@@ -35,12 +36,11 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_size_large-single');
     expect(badge.hasChildNodes()).toBeTruthy();
   });
 
-  test('large-multiple', () => {
+  test('large-multiple size', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" size="large-multiple" />
@@ -48,7 +48,6 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_size_large-multiple');
     expect(badge.hasChildNodes()).toBeTruthy();
   });
@@ -79,7 +78,7 @@ describe('Badge testing', () => {
     expect(label).toHaveTextContent('2');
   });
 
-  test('primary', () => {
+  test('primary color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="primary" />
@@ -87,11 +86,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_primary');
   });
 
-  test('primary-container', () => {
+  test('primary-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="primary-container" />
@@ -99,11 +97,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_primary-container');
   });
 
-  test('secondary', () => {
+  test('secondary color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="secondary" />
@@ -111,11 +108,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_secondary');
   });
 
-  test('secondary-container', () => {
+  test('secondary-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="secondary-container" />
@@ -123,11 +119,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_secondary-container');
   });
 
-  test('tertiary', () => {
+  test('tertiary color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="tertiary" />
@@ -135,11 +130,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_tertiary');
   });
 
-  test('tertiary-container', () => {
+  test('tertiary-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="tertiary-container" />
@@ -147,11 +141,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_tertiary-container');
   });
 
-  test('success', () => {
+  test('success color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="success" />
@@ -159,11 +152,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_success');
   });
 
-  test('success-container', () => {
+  test('success-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="success-container" />
@@ -171,11 +163,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_success-container');
   });
 
-  test('warning', () => {
+  test('warning color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="warning" />
@@ -183,11 +174,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_warning');
   });
 
-  test('warning-container', () => {
+  test('warning-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="warning-container" />
@@ -195,11 +185,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_warning-container');
   });
 
-  test('error', () => {
+  test('error color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="error" />
@@ -207,11 +196,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_error');
   });
 
-  test('error-container', () => {
+  test('error-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="error-container" />
@@ -219,11 +207,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_error-container');
   });
 
-  test('info', () => {
+  test('info color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="info" />
@@ -231,11 +218,10 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_info');
   });
 
-  test('info-container', () => {
+  test('info-container color', () => {
     render(
       <TestProviders>
         <Badge data-testid="badge" color="info-container" />
@@ -243,7 +229,6 @@ describe('Badge testing', () => {
     );
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge');
     expect(badge).toHaveClass('badge_color_info-container');
   });
 });
