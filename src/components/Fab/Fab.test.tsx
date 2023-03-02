@@ -7,10 +7,14 @@ describe('Fab testing', () => {
   test('should be in the document', () => {
     render(
       <TestProviders>
-        <Fab data-testid="fab" />
+        <Fab data-testid="fab">
+          <svg />
+        </Fab>
       </TestProviders>,
     );
 
     expect(screen.getByTestId('fab')).toBeInTheDocument();
   });
+
+  // TODO another tests
 });
