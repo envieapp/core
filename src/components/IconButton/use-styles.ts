@@ -1,5 +1,5 @@
 import { Interpolation } from '@emotion/react';
-import { ColorName, EnvieTheme } from '@envie/theme';
+import { EnvieTheme } from '@envie/theme';
 import { RequiredKeys } from '@envie/utilities';
 import { IconButtonProps } from './IconButton.types';
 
@@ -8,13 +8,13 @@ type Keys = RequiredKeys<IconButtonProps, 'variant' | 'color' | 'selected'>;
 type Fn = (props: Keys) => Interpolation<EnvieTheme>;
 
 const standardIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const foreground = props.selected ? props.color : 'onSurfaceVariant';
+
   return (theme) => {
     return {
       '&:enabled': {
         background: 'none',
-        color: props.selected
-          ? theme.sys.color[props.color].hex
-          : theme.sys.color.onSurfaceVariant.hex,
+        color: theme.sys.color[foreground].hex,
       },
       '&:disabled': {
         background: 'none',
@@ -23,46 +23,46 @@ const standardIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (pr
       '&:enabled:hover': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'hovered',
-          props.selected
-            ? theme.sys.color[props.color]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:focus': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'focused',
-          props.selected
-            ? theme.sys.color[props.color]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:active': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'pressed',
-          props.selected
-            ? theme.sys.color[props.color]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
       },
     };
   };
 };
 
 const filledIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const foreground = props.selected
+    ? (() => {
+      switch (props.color) {
+        case 'primary': return 'onPrimary';
+        case 'secondary': return 'onSecondary';
+        case 'tertiary': return 'onTertiary';
+        case 'success': return 'onSuccess';
+        case 'warning': return 'onWarning';
+        case 'error': return 'onError';
+        case 'info': return 'onInfo';
+        default: throw new Error('invalid color');
+      }
+    })() : props.color;
+  const background = props.selected ? props.color : 'surfaceVariant';
+
   return (theme) => {
-    const onColor = `on${props.color.charAt(0).toUpperCase()}`
-    + `${props.color.substring(1)}` as ColorName;
     return {
       '&:enabled': {
-        color: props.selected
-          ? theme.sys.color[onColor].hex
-          : theme.sys.color[props.color].hex,
-        background: props.selected
-          ? theme.sys.color[props.color].hex
-          : theme.sys.color.surfaceVariant.hex,
+        color: theme.sys.color[foreground].hex,
+        background: theme.sys.color[background].hex,
       },
       '&:disabled': {
         background: theme.fn.opacity(theme.sys.color.onSurface, 0.12),
@@ -71,47 +71,57 @@ const filledIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (prop
       '&:enabled:hover': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'hovered',
-          props.selected
-            ? theme.sys.color[onColor]
-            : theme.sys.color[props.color],
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:focus': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'focused',
-          props.selected
-            ? theme.sys.color[onColor]
-            : theme.sys.color[props.color],
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:active': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'pressed',
-          props.selected
-            ? theme.sys.color[onColor]
-            : theme.sys.color[props.color],
+          theme.sys.color[foreground],
         ),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
       },
     };
   };
 };
 
 const tonalIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const foreground = props.selected
+    ? (() => {
+      switch (props.color) {
+        case 'primary': return 'onPrimaryContainer';
+        case 'secondary': return 'onSecondaryContainer';
+        case 'tertiary': return 'onTertiaryContainer';
+        case 'success': return 'onSuccessContainer';
+        case 'warning': return 'onWarningContainer';
+        case 'error': return 'onErrorContainer';
+        case 'info': return 'onInfoContainer';
+        default: throw new Error('invalid color');
+      }
+    })() : 'onSurfaceVariant';
+  const background = props.selected ? (() => {
+    switch (props.color) {
+      case 'primary': return 'primaryContainer';
+      case 'secondary': return 'secondaryContainer';
+      case 'tertiary': return 'tertiaryContainer';
+      case 'success': return 'successContainer';
+      case 'warning': return 'warningContainer';
+      case 'error': return 'errorContainer';
+      case 'info': return 'infoContainer';
+      default: throw new Error('invalid color');
+    }
+  })() : 'surfaceVariant';
+
   return (theme) => {
-    const colorContainer = `${props.color}Container` as ColorName;
-    const onColorContainer = `on${colorContainer.charAt(0).toUpperCase()}`
-    + `${colorContainer.substring(1)}` as ColorName;
     return {
       '&:enabled': {
-        color: props.selected
-          ? theme.sys.color[onColorContainer].hex
-          : theme.sys.color.onSurfaceVariant.hex,
-        background: props.selected
-          ? theme.sys.color[colorContainer].hex
-          : theme.sys.color.surfaceVariant.hex,
+        color: theme.sys.color[foreground].hex,
+        background: theme.sys.color[background].hex,
       },
       '&:disabled': {
         background: theme.fn.opacity(theme.sys.color.onSurface, 0.12),
@@ -120,44 +130,36 @@ const tonalIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props
       '&:enabled:hover': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'hovered',
-          props.selected
-            ? theme.sys.color[onColorContainer]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:focus': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'focused',
-          props.selected
-            ? theme.sys.color[onColorContainer]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:active': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'pressed',
-          props.selected
-            ? theme.sys.color[onColorContainer]
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
       },
     };
   };
 };
 
 const outlinedIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const borderWidth = props.selected ? 0 : 1;
+  const foreground = props.selected ? 'inverseOnSurface' : 'onSurfaceVariant';
+
   return (theme) => {
     return {
       background: 'none',
-      borderWidth: props.selected ? 0 : 1,
+      borderWidth,
       borderStyle: 'solid',
       '&:enabled': {
-        color: props.selected
-          ? theme.sys.color.inverseOnSurface.hex
-          : theme.sys.color.onSurfaceVariant.hex,
+        color: theme.sys.color[foreground].hex,
         borderColor: theme.sys.color.outline.hex,
         background: props.selected ? theme.sys.color.inverseSurface.hex : undefined,
       },
@@ -169,29 +171,23 @@ const outlinedIconButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (pr
       '&:enabled:hover': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'hovered',
-          props.selected
-            ? theme.sys.color.inverseOnSurface
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:focus': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'focused',
-          props.selected
-            ? theme.sys.color.inverseOnSurface
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:enabled:active': {
         '--icon-button-state-layer': theme.fn.stateLayer(
           'pressed',
-          props.selected
-            ? theme.sys.color.inverseOnSurface
-            : theme.sys.color.onSurfaceVariant,
+          theme.sys.color[foreground],
         ),
       },
       '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color.outline, 0.18),
+        outlineColor: theme.fn.opacity(theme.sys.color.outline, 0.5),
       },
     };
   };
@@ -244,6 +240,9 @@ export const useStyles: Fn = (props: Keys): Interpolation<EnvieTheme> => {
         left: '-0.25rem',
         bottom: '-0.25rem',
         right: '-0.25rem',
+      },
+      '&:focus-visible': {
+        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.5),
       },
     };
   }];

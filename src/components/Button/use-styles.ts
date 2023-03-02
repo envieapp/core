@@ -1,5 +1,5 @@
 import { Interpolation } from '@emotion/react';
-import { ColorName, EnvieTheme } from '@envie/theme';
+import { EnvieTheme } from '@envie/theme';
 import { RequiredKeys } from '@envie/utilities';
 import { ButtonProps } from './Button.types';
 
@@ -33,21 +33,29 @@ const elevatedButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props)
         boxShadow: theme.fn.elevation(1),
         '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[props.color]),
       },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
-      },
     };
   };
 };
 
 const filledButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const background = props.color;
+  const foreground = (() => {
+    switch (props.color) {
+      case 'primary': return 'onPrimary';
+      case 'secondary': return 'onSecondary';
+      case 'tertiary': return 'onTertiary';
+      case 'success': return 'onSuccess';
+      case 'warning': return 'onWarning';
+      case 'error': return 'onError';
+      case 'info': return 'onInfo';
+      default: throw new Error('invalid color');
+    }
+  })();
   return (theme) => {
-    const onColor = `on${props.color.charAt(0).toUpperCase()}`
-    + `${props.color.substring(1)}` as ColorName;
     return {
       '&:enabled': {
-        background: theme.sys.color[props.color].hex,
-        color: theme.sys.color[onColor].hex,
+        background: theme.sys.color[background].hex,
+        color: theme.sys.color[foreground].hex,
         boxShadow: 'none',
       },
       '&:disabled': {
@@ -56,30 +64,50 @@ const filledButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) =
       },
       '&:enabled:hover': {
         boxShadow: theme.fn.elevation(1),
-        '--button-state-layer': theme.fn.stateLayer('hovered', theme.sys.color[onColor]),
+        '--button-state-layer': theme.fn.stateLayer('hovered', theme.sys.color[foreground]),
       },
       '&:enabled:focus': {
-        '--button-state-layer': theme.fn.stateLayer('focused', theme.sys.color[onColor]),
+        '--button-state-layer': theme.fn.stateLayer('focused', theme.sys.color[foreground]),
       },
       '&:enabled:active': {
         boxShadow: 'none',
-        '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[onColor]),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
+        '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[foreground]),
       },
     };
   };
 };
 
 const tonalButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => {
+  const background = (() => {
+    switch (props.color) {
+      case 'primary': return 'primaryContainer';
+      case 'secondary': return 'secondaryContainer';
+      case 'tertiary': return 'tertiaryContainer';
+      case 'success': return 'successContainer';
+      case 'warning': return 'warningContainer';
+      case 'error': return 'errorContainer';
+      case 'info': return 'infoContainer';
+      default: throw new Error('invalid color');
+    }
+  })();
+  const foreground = (() => {
+    switch (props.color) {
+      case 'primary': return 'onPrimaryContainer';
+      case 'secondary': return 'onSecondaryContainer';
+      case 'tertiary': return 'onTertiaryContainer';
+      case 'success': return 'onSuccessContainer';
+      case 'warning': return 'onWarningContainer';
+      case 'error': return 'onErrorContainer';
+      case 'info': return 'onInfoContainer';
+      default: throw new Error('invalid color');
+    }
+  })();
+
   return (theme) => {
-    const color = `${props.color}Container` as ColorName;
-    const onColor = `on${color.charAt(0).toUpperCase()}${color.substring(1)}` as ColorName;
     return {
       '&:enabled': {
-        background: theme.sys.color[color].hex,
-        color: theme.sys.color[onColor].hex,
+        background: theme.sys.color[background].hex,
+        color: theme.sys.color[foreground].hex,
         boxShadow: 'none',
       },
       '&:disabled': {
@@ -88,17 +116,14 @@ const tonalButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) =>
       },
       '&:enabled:hover': {
         boxShadow: theme.fn.elevation(1),
-        '--button-state-layer': theme.fn.stateLayer('hovered', theme.sys.color[onColor]),
+        '--button-state-layer': theme.fn.stateLayer('hovered', theme.sys.color[foreground]),
       },
       '&:enabled:focus': {
-        '--button-state-layer': theme.fn.stateLayer('focused', theme.sys.color[onColor]),
+        '--button-state-layer': theme.fn.stateLayer('focused', theme.sys.color[foreground]),
       },
       '&:enabled:active': {
         boxShadow: 'none',
-        '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[onColor]),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
+        '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[foreground]),
       },
     };
   };
@@ -128,9 +153,6 @@ const outlinedButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props)
       '&:enabled:active': {
         '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[props.color]),
       },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
-      },
     };
   };
 };
@@ -153,9 +175,6 @@ const textButtonStyles: (props: Keys) => Interpolation<EnvieTheme> = (props) => 
       },
       '&:enabled:active': {
         '--button-state-layer': theme.fn.stateLayer('pressed', theme.sys.color[props.color]),
-      },
-      '&:focus-visible': {
-        outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.18),
       },
     };
   };
@@ -220,6 +239,9 @@ export const useStyles: Fn = (props: Keys): Styles => {
           transitionTimingFunction: `cubic-bezier(${theme.sys.motion.easing.standard})`,
           transitionDuration: `${theme.sys.motion.duration.medium2}ms`,
           zIndex: -1,
+        },
+        '&:focus-visible': {
+          outlineColor: theme.fn.opacity(theme.sys.color[props.color], 0.5),
         },
       };
     }],

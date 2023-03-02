@@ -26,6 +26,12 @@ export default {
 } as ComponentMeta<typeof IconButton>;
 
 const Template: ComponentStory<typeof IconButton> = (args) => {
+  const [selected, setSelected] = React.useState(false);
+
+  const handleClick = () => {
+    setSelected((p) => { return !p; });
+  };
+
   return (
     <Box css={{
       display: 'flex',
@@ -39,6 +45,9 @@ const Template: ComponentStory<typeof IconButton> = (args) => {
       },
     }}
     >
+      <IconButton {...args} selected={selected} onClick={handleClick}>
+        {selected ? filledIcon : icon}
+      </IconButton>
       <IconButton {...args}>
         {icon}
       </IconButton>

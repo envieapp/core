@@ -3,72 +3,72 @@ import { ColorName, EnvieTheme } from '@envie/theme';
 import { RequiredKeys } from '@envie/utilities';
 import { BadgeProps } from './Badge.types';
 
-const getColorNames = (color: BadgeProps['color']): {
+const useColors = (color: BadgeProps['color']): {
   background: ColorName
-  color: ColorName
+  foreground: ColorName
 } => {
   switch (color) {
     case 'primary': return {
       background: 'primary',
-      color: 'onPrimary',
+      foreground: 'onPrimary',
     };
     case 'primary-container': return {
       background: 'primaryContainer',
-      color: 'onPrimaryContainer',
+      foreground: 'onPrimaryContainer',
     };
     case 'secondary': return {
       background: 'secondary',
-      color: 'onSecondary',
+      foreground: 'onSecondary',
     };
     case 'secondary-container': return {
       background: 'secondaryContainer',
-      color: 'onSecondaryContainer',
+      foreground: 'onSecondaryContainer',
     };
     case 'tertiary': return {
       background: 'tertiary',
-      color: 'onTertiary',
+      foreground: 'onTertiary',
     };
     case 'tertiary-container': return {
       background: 'tertiaryContainer',
-      color: 'onTertiaryContainer',
+      foreground: 'onTertiaryContainer',
     };
     case 'success': return {
       background: 'success',
-      color: 'onSuccess',
+      foreground: 'onSuccess',
     };
     case 'success-container': return {
       background: 'successContainer',
-      color: 'onSuccessContainer',
+      foreground: 'onSuccessContainer',
     };
     case 'warning': return {
       background: 'warning',
-      color: 'onWarning',
+      foreground: 'onWarning',
     };
     case 'warning-container': return {
       background: 'warningContainer',
-      color: 'onWarningContainer',
+      foreground: 'onWarningContainer',
     };
     case 'error': return {
       background: 'error',
-      color: 'onError',
+      foreground: 'onError',
     };
     case 'error-container': return {
       background: 'errorContainer',
-      color: 'onErrorContainer',
+      foreground: 'onErrorContainer',
     };
     case 'info': return {
       background: 'info',
-      color: 'onInfo',
+      foreground: 'onInfo',
     };
     case 'info-container': return {
       background: 'infoContainer',
-      color: 'onInfoContainer',
+      foreground: 'onInfoContainer',
     };
     default: throw new Error('invalid color');
   }
 };
 
-const getSizeStyles = (size: BadgeProps['size']): CSSObject => {
+const useSizes = (size: BadgeProps['size']): CSSObject => {
   switch (size) {
     case 'small': return {
       width: '0.375rem',
@@ -93,14 +93,13 @@ export const useStyles = (
     size,
   }: RequiredKeys<BadgeProps, 'color' | 'size'>,
 ): Interpolation<EnvieTheme> => {
+  const { background, foreground } = useColors(color);
+  const sizes = useSizes(size);
   return (theme) => {
-    const colorNames = getColorNames(color);
-    const sizeStyles = getSizeStyles(size);
-
     return {
-      background: theme.sys.color[colorNames.background].hex,
-      color: theme.sys.color[colorNames.color].hex,
-      ...sizeStyles,
+      ...sizes,
+      background: theme.sys.color[background].hex,
+      color: theme.sys.color[foreground].hex,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
